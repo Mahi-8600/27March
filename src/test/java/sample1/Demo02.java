@@ -2,6 +2,11 @@ package sample1;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.print.attribute.standard.DateTimeAtCreation;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -31,8 +36,11 @@ public class Demo02 {
 		s.selectByIndex(3);
 		
 		File src = (( TakesScreenshot ) driver ).getScreenshotAs(OutputType.FILE);
+		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		 String a = LocalDateTime.now().format(myFormat);
+		String b=a.replace(":", "_");
 		
-		File dest=new File("C:\\Users\\mahes\\OneDrive\\Desktop\\SS01\\test.png");
+		File dest=new File("C:\\Users\\mahes\\OneDrive\\Desktop\\SS01\\test"+b+".png");
 		
 		FileHandler.copy(src, dest);
 	
